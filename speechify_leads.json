@@ -1,92 +1,88 @@
 [
   {
-    "id": "live_feed_001",
-    "competitor": "Speechify",
-    "platform": "Reddit (r/SpeechifyApp)",
-    "time_bucket": "today",
-    "real_time_status": "🟢 Live Real-Time Feed (Always Shows Today's Newest Posts)",
-    "intent_score": "10/10 (High Urgency)",
-    "feed_title": "r/SpeechifyApp Live Subreddit Feed (Sorted by Newest)",
-    "why_high_intent": "This is the official community where users post immediately after getting charged or experiencing app glitches.",
-    "direct_url": "https://www.reddit.com/r/SpeechifyApp/new/",
+    "id": "direct_lead_001",
+    "category": "alternative_seekers",
+    "platform": "Reddit",
+    "community": "r/ProductivityApps",
+    "post_title": "Beginning to hate Speechify, need a solid alternative",
+    "complaint": "I'm really starting to hate Speechify. The app has become bloated, overly expensive, and constantly pushes unwanted AI features instead of just reading text cleanly. Need a solid alternative recommendation.",
+    "direct_thread_url": "https://www.reddit.com/r/ProductivityApps/comments/1gtyz94/beginning_to_hate_speechify_need_a_solid/",
+    "communication_channel": "✅ Direct 1-to-1 Channel: Reddit Reply & Direct Chat",
     "steps": [
-      "Click 'Open Live Feed (r/SpeechifyApp)' below.",
-      "Look at the top posts from today / hours ago.",
-      "Identify users asking how to cancel or complaining about billing.",
-      "Click their username -> Click 'Chat' -> Paste the ready-made message below."
+      "Click the black 'Open This Exact Thread' button below.",
+      "You will land directly on this exact post (not the homepage).",
+      "Click 'Reply' directly under their post, or click the author's username to start a private Chat.",
+      "Click 'Copy Exact Message' below and paste it in."
     ],
-    "exact_message": "Hey! Saw your post on r/SpeechifyApp about the unexpected charge/cancellation issue. The same thing happened to many trial users—their mobile app hides the cancellation button. You have to log into app.speechify.com on a computer browser to cancel it and stop the auto-renewals.\n\nAlso, if you're disputing it with your bank, keep screenshots of your cancellation attempt. If you still need a good audio reader for textbooks, we made a simple tool that is strictly monthly ($7/mo) with zero annual traps. Hope this helps you get your money back!"
+    "exact_message": "Hey! Saw your post looking for a clean, non-bloated alternative to Speechify. We got tired of the exact same thing—expensive pricing and forced AI gimmicks. We built an audio reader focused purely on clean document listening: high-grade natural voices, zero clutter, and transparent monthly pricing ($6/mo). You can try a 1-click test right here (no signup needed): [Your Link]"
   },
   {
-    "id": "live_feed_002",
-    "competitor": "Speechify",
-    "platform": "Reddit (r/audiobooks)",
-    "time_bucket": "today",
-    "real_time_status": "🟢 Live Real-Time Search (Sorted by Newest)",
-    "intent_score": "9/10 (Active Alternative Seekers)",
-    "feed_title": "r/audiobooks Speechify Live Search (Sorted by Newest)",
-    "why_high_intent": "Avid listeners and students actively posting reviews, warnings, and asking for alternative TTS recommendations.",
-    "direct_url": "https://www.reddit.com/r/audiobooks/search/?q=speechify&sort=new&restrict_sr=1",
+    "id": "direct_lead_002",
+    "category": "alternative_seekers",
+    "platform": "Reddit",
+    "community": "r/ProductivityApps",
+    "post_title": "Is it just me or is Speechify getting too expensive?",
+    "complaint": "Speechify's pricing has gotten completely out of hand for basic text to speech. Looking for recommendations for tools that don't charge astronomical annual fees.",
+    "direct_thread_url": "https://www.reddit.com/r/ProductivityApps/comments/1pjxbc2/is_it_just_me_or_is_speechify_getting_too/",
+    "communication_channel": "✅ Direct 1-to-1 Channel: Reddit Reply & Direct Chat",
     "steps": [
-      "Click 'Open Live Search (r/audiobooks)' below.",
-      "Reddit opens with posts strictly sorted by newest first.",
-      "Click into any recent thread discussing Speechify pricing or voice quality.",
-      "Reply to the user or send them a Chat with the exact message below."
+      "Click 'Open This Exact Thread' below.",
+      "Opens directly to the user asking for cheaper recommendations.",
+      "Click 'Reply' to join the discussion or send them a private message.",
+      "Paste the ready-made message below."
     ],
-    "exact_message": "Hey! Saw your thread on r/audiobooks about Speechify. Celebrity voices are just marketing gimmicks, not built for deep long-form reading. We built an audio reader focused purely on natural conversational cadence for books and long articles. Here is a quick 1-click test link (no sign-up needed) if you'd like to try it:"
+    "exact_message": "Hey! You're definitely not alone—Speechify charging $140–$200/year for text-to-speech is crazy. Check out our reader: it gives you high-end neural voices, runs directly in your browser or phone, and is strictly monthly ($5/mo) with a generous free tier. Here's a link to test it:"
   },
   {
-    "id": "live_feed_003",
-    "competitor": "Speechify",
-    "platform": "Trustpilot",
-    "time_bucket": "today",
-    "real_time_status": "🟢 Live 1-Star Verified Reviews (Sorted by Date Newest)",
-    "intent_score": "10/10 (Angry Billed Customers)",
-    "feed_title": "Trustpilot 1-Star Live Reviews (Filtered & Sorted by Date)",
-    "why_high_intent": "Real customers who just got charged $150-$230 and were denied refunds due to the 500-word listening policy.",
-    "direct_url": "https://www.trustpilot.com/review/speechify.com?sort=bystate%3Adate&stars=1",
+    "id": "direct_lead_003",
+    "category": "billing_disputes",
+    "platform": "Reddit",
+    "community": "r/audiobooks",
+    "post_title": "Speechify is a scam app. Charged me $229.99 after I cancelled free trial.",
+    "complaint": "I cancelled my free trial on time, yet they still charged my card $229.99. Support is refusing refunds and giving automated canned responses. Beware of their trial.",
+    "direct_thread_url": "https://www.reddit.com/r/audiobooks/comments/1kq5jxe/speechify_is_a_scam_app_charged_me_22999_after_i/",
+    "communication_channel": "✅ Direct 1-to-1 Channel: Reddit Reply & Direct Chat",
     "steps": [
-      "Click 'Open 1-Star Trustpilot Feed' below.",
-      "Trustpilot opens sorted by newest date with 1-star filter active.",
-      "Review the latest names and complaints from this week.",
-      "Reach out to users on LinkedIn/social or reply to public discussion boards."
+      "Click 'Open This Exact Thread' below.",
+      "Opens the exact thread where the user was charged $229.99.",
+      "Click the author's username at the top to send a private Chat or leave a reply.",
+      "Paste the message below."
     ],
-    "exact_message": "Hi, saw your 1-star Trustpilot review regarding Speechify's hidden auto-renewal and 500-word refund policy. That rule catches so many users off guard. If you still need clean text-to-speech for your daily reading, our reader is completely free on the web without hidden word caps or annual lock-ins. Would love to share a link if you're interested!"
+    "exact_message": "Hey! Saw your post about Speechify hitting you with that $229.99 charge after cancelling. Same thing happened to many people—their app often fails to register cancellations. Make sure to file a dispute with your credit card company right away.\n\nAlso, if you still need a reliable audio reader for books and papers, we made an honest tool that is strictly monthly ($7/mo) with zero annual locks. Hope this helps you get your money back!"
   },
   {
-    "id": "live_feed_004",
-    "competitor": "Speechify",
+    "id": "direct_lead_004",
+    "category": "billing_disputes",
+    "platform": "Reddit",
+    "community": "r/audiobooks",
+    "post_title": "Speechify charges you even after you cancel their 3-day free trial",
+    "complaint": "Warning everyone here: Speechify charged me an annual subscription after I already cancelled within the 3-day window. Watch your bank statements.",
+    "direct_thread_url": "https://www.reddit.com/r/audiobooks/comments/1h6hy4v/speechify_charges_you_even_after_you_cancel_their/",
+    "communication_channel": "✅ Direct 1-to-1 Channel: Reddit Reply & Direct Chat",
+    "steps": [
+      "Click 'Open This Exact Thread' below.",
+      "Opens the exact warning thread on r/audiobooks.",
+      "Send a message to the author or reply in the thread.",
+      "Paste the message below."
+    ],
+    "exact_message": "Hey! Saw your thread warning people about Speechify's unexpected charges. If you subscribed via Apple/Google, dispute it through reportaproblem.apple.com; if direct, do a bank chargeback immediately.\n\nIf you still need high-quality text-to-speech without the billing games, check out our tool—clean pricing, zero annual traps, and natural voices. Good luck getting your refund!"
+  },
+  {
+    "id": "direct_lead_005",
+    "category": "twitter_live",
     "platform": "X (Twitter)",
-    "time_bucket": "yesterday",
-    "real_time_status": "🟢 Live Tweet Stream (Real-Time Tweets from Today)",
-    "intent_score": "9/10 (Real-Time Frustration)",
-    "feed_title": "X / Twitter Real-Time Complaint Search (f=live)",
-    "why_high_intent": "People tweeting directly to @Speechify right now demanding refunds, complaining about app bugs, or warning others.",
-    "direct_url": "https://x.com/search?q=speechify%20(cancel%20OR%20charged%20OR%20refund)&f=live",
+    "community": "Real-Time Mentions",
+    "post_title": "Live Real-Time Tweets Complaining About Speechify",
+    "complaint": "Real-time feed of users on Twitter/X tweeting about unexpected Speechify charges, app freezing, and asking for alternative readers.",
+    "direct_thread_url": "https://x.com/search?q=speechify%20(cancel%20OR%20charged%20OR%20refund)&f=live",
+    "communication_channel": "✅ Direct 1-to-1 Channel: Twitter @Reply & Direct Message (DM)",
     "steps": [
-      "Click 'Open Live Twitter/X Search' below.",
-      "Shows tweets posted in the last few hours/minutes.",
-      "Click the profile of anyone complaining about billing or app crashes.",
-      "Reply to their tweet or send a DM with the message below."
+      "Click 'Open Live Twitter/X Feed' below.",
+      "Shows real-time tweets posted in the last few hours/minutes.",
+      "Pick any user who tweeted about canceling or charges.",
+      "Click their handle -> Click 'Message' (DM) or 'Reply' to their tweet.",
+      "Paste the ready-made message below."
     ],
     "exact_message": "Hey! Saw your tweet about Speechify billing issues. You're definitely not alone—happens to lots of trial users. If you're looking for a simple, reliable alternative without surprise annual charges, check out our reader:"
-  },
-  {
-    "id": "live_feed_005",
-    "competitor": "Speechify",
-    "platform": "Reddit (r/Scams)",
-    "time_bucket": "last3days",
-    "real_time_status": "🟢 Live Search Stream (Sorted by Newest)",
-    "intent_score": "10/10 (Chargeback & Dispute Seekers)",
-    "feed_title": "r/Scams Speechify Search Stream (Sorted by Newest)",
-    "why_high_intent": "Users asking if Speechify is a scam after being hit with unexpected charges; highest urgency to switch to an honest app.",
-    "direct_url": "https://www.reddit.com/r/Scams/search/?q=speechify&sort=new&restrict_sr=1",
-    "steps": [
-      "Click 'Open r/Scams Live Search' below.",
-      "Check recent posts where users ask about unexpected charges.",
-      "Send a helpful DM advising them on bank chargeback evidence.",
-      "Paste the exact message below."
-    ],
-    "exact_message": "Hey! Saw your post on r/Scams regarding Speechify. Standard advice: stop messaging their support bots and immediately file a dispute with your credit card company or bank. If you still need a good TTS reader for studying, we made an alternative with zero bot runarounds and simple monthly billing."
   }
 ]
