@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Churn Finder — Simple Dashboard</title>
+  <style>
+    /* Ultra-clean, distraction-free styling (Warren Buffett simple) */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: #f8fafc; color: #1e293b; padding: 40px 20px; line-height: 1.6; }
+    .container { max-width: 820px; margin: 0 auto; }
+    
+    /* Simple Header */
+    .header { margin-bottom: 30px; text-align: left; }
+    h1 { font-size: 28px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+    .tagline { font-size: 16px; color: #64748b; }
+    
+    /* 3 Simple Tabs */
+    .tabs { display: flex; gap: 10px; margin-bottom: 24px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
+    .tab-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { background: #f1f5f9; }
+    .tab-btn.active { background: #2563eb; color: #ffffff; border-color: #2563eb; box-shadow: 0 2px 8px rgba(37,99,235,0.25); }
+
+    /* The Lead Card */
+    .lead-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .badge-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .platform-tag { background: #eff6ff; color: #1d4ed8; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; }
+    .time-tag { font-size: 13px; color: #64748b; font-weight: 500; }
+
+    /* Step 1: What they said */
+    .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-bottom: 6px; }
+    .complaint-box {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      padding: 14px 16px;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #991b1b;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    /* Step 2: What you do */
+    .instructions-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+    .instructions-box ol { margin-left: 20px; font-size: 14px; color: #334155; }
+    .instructions-box li { margin-bottom: 6px; }
+
+    /* Step 3: Exact message */
+    .message-container { margin-bottom: 18px; }
+    .message-box {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 14px;
+      color: #0f172a;
+      white-space: pre-line;
+      line-height: 1.5;
+    }
+
+    /* Buttons */
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-connect {
+      background: #0f172a;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-connect:hover { background: #1e293b; }
+    
+    .btn-copy {
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-copy:hover { background: #1d4ed8; }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Minimal Header -->
+  <div class="header">
+    <h1>Angry Customer Radar</h1>
+    <p class="tagline">People complaining about Speechify right now, with 1-click links and ready-made messages to send them.</p>
+  </div>
+
+  <!-- Simple Time Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('today', this)">🔥 Today</button>
+    <button class="tab-btn" onclick="switchTab('yesterday', this)">⚡ Yesterday</button>
+    <button class="tab-btn" onclick="switchTab('last3days', this)">📅 Last 3 Days</button>
+  </div>
+
+  <!-- Leads Container -->
+  <div id="leads-list"></div>
+</div>
+
+<div id="toast" class="toast">✓ Message Copied! Ready to paste.</div>
+
+<script>
+  // High-intent leads with exact 1-2-3 instructions and ready-to-paste messages
+  const leads = [
+    {
+      time: "today",
+      timeLabel: "Today (2 hours ago)",
+      platform: "Reddit",
+      user: "u/TechReader_92",
+      connectUrl: "https://reddit.com/user/TechReader_92",
+      complaint: "I took the 3-day free trial on my iPhone. Today Speechify hit my bank with a surprise $199 annual charge! There is literally no cancel button in the mobile app settings. Complete scam.",
+      steps: [
+        "Click the black <strong>'Open Reddit Profile'</strong> button below.",
+        "Click the <strong>'Chat'</strong> or <strong>'Send Message'</strong> button on their profile.",
+        "Click the blue <strong>'Copy Exact Message'</strong> button below, paste it into the chat, and press Send."
+      ],
+      exactMessage: "Hey! Saw your post about Speechify hitting you with that unexpected $199 annual charge. The same thing happened to a lot of people—their mobile app hides the cancel button. You have to log into app.speechify.com on a computer browser to cancel it and stop the auto-renewals.\n\nAlso, if you're disputing it with your bank, keep screenshots of your cancellation attempt. If you still need a good audio reader for textbooks, we made a simple tool that is strictly monthly ($7/mo) with zero annual traps. Hope this helps you get your money back!"
+    },
+    {
+      time: "today",
+      timeLabel: "Today (5 hours ago)",
+      platform: "Trustpilot",
+      user: "Marcus Thorne",
+      connectUrl: "https://www.trustpilot.com/review/speechify.com",
+      complaint: "Speechify refused to refund my accidental renewal because their policy says after reading 500 words you are not eligible. 500 words is literally 2 minutes of listening!",
+      steps: [
+        "Click <strong>'Open Review Page'</strong> to view Marcus's full complaint.",
+        "Look for their public social handle or reply to the review thread.",
+        "Paste the exact message below."
+      ],
+      exactMessage: "Hi Marcus, saw your review on Speechify's 500-word refund policy. That rule catches so many students off guard. If you still need clean text-to-speech for your reading, our reader is completely free on the web without hidden word caps or annual lock-ins. Would love to share a free link if you're interested!"
+    },
+    {
+      time: "yesterday",
+      timeLabel: "Yesterday",
+      platform: "Reddit",
+      user: "u/AudioPhile_Dave",
+      connectUrl: "https://reddit.com/user/AudioPhile_Dave",
+      complaint: "The celebrity voices like Snoop Dogg are funny for 2 minutes, but listening to an entire book is unlistenable. The cadence is robotic and flat for long chapters.",
+      steps: [
+        "Click <strong>'Open Reddit Profile'</strong> below.",
+        "Click <strong>'Chat'</strong>.",
+        "Paste the exact message below."
+      ],
+      exactMessage: "Hey Dave, totally agree with you on Speechify—celebrity voices are just expensive marketing gimmicks, not built for actual long-form reading. We built an audio reader focused purely on natural conversational cadence for books and long articles. Here is a quick 1-click test link (no sign-up needed) if you'd like to try it:"
+    },
+    {
+      time: "yesterday",
+      timeLabel: "Yesterday",
+      platform: "Apple App Store",
+      user: "LawStudent_Sarah",
+      connectUrl: "https://apps.apple.com/us/app/speechify-text-to-speech-audio/id1488583238",
+      complaint: "Speechify makes studying legal PDFs impossible because it reads citation numbers like [1], [2], footnote links, and page headers out loud right in the middle of sentences.",
+      steps: [
+        "Click <strong>'View App Store Review'</strong> to see the review thread.",
+        "Reach out via Twitter or Reddit where student law communities hang out.",
+        "Send this exact message."
+      ],
+      exactMessage: "Hey Sarah! Saw your review about Speechify reading brackets like [1] and footnotes out loud on law PDFs. We specifically created a smart PDF cleaner that skips citations, footnotes, and headers automatically so your study audio flows smoothly. Happy to give you free full access if you'd like to test it on your textbooks!"
+    },
+    {
+      time: "last3days",
+      timeLabel: "3 Days Ago",
+      platform: "Reddit",
+      user: "u/Productivity_Junkie88",
+      connectUrl: "https://reddit.com/user/Productivity_Junkie88",
+      complaint: "Looking for an alternative to Speechify that doesn't cost $140+ per year. I just want simple, natural-sounding audio for articles during my commute.",
+      steps: [
+        "Click <strong>'Open Reddit Profile'</strong>.",
+        "Send them a Direct Message or reply to their post.",
+        "Paste the exact message below."
+      ],
+      exactMessage: "Hey! Saw you're looking for an alternative to Speechify that doesn't cost $140/yr. We built a lightweight audio reader that costs $5/mo (or completely free for basic daily reading), runs directly on your phone and browser, and uses high-end neural voices. You can test it right here with 1 click:"
+    }
+  ];
+
+  function renderLeads(tabKey) {
+    const list = document.getElementById('leads-list');
+    list.innerHTML = '';
+
+    const filtered = leads.filter(l => l.time === tabKey);
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<div style="text-align:center; padding: 40px; color: #94a3b8;">No complaints found for this time period yet.</div>';
+      return;
+    }
+
+    filtered.forEach((lead, index) => {
+      const card = document.createElement('div');
+      card.className = 'lead-card';
+
+      const stepsHtml = lead.steps.map(s => `<li>${s}</li>`).join('');
+
+      card.innerHTML = `
+        <div class="badge-row">
+          <span class="platform-tag">${lead.platform} • ${lead.user}</span>
+          <span class="time-tag">⏱️ ${lead.timeLabel}</span>
+        </div>
+
+        <div class="section-title">1. What The Customer Said:</div>
+        <div class="complaint-box">"${lead.complaint}"</div>
+
+        <div class="section-title">2. How To Connect (Step-by-Step):</div>
+        <div class="instructions-box">
+          <ol>${stepsHtml}</ol>
+        </div>
+
+        <div class="section-title">3. Exact Message To Send (Copy & Paste):</div>
+        <div class="message-container">
+          <div class="message-box" id="msg-${index}">${lead.exactMessage}</div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-copy" onclick="copyText('msg-${index}')">📋 Copy Exact Message</button>
+          <a href="${lead.connectUrl}" target="_blank" class="btn-connect">🔗 Go to ${lead.platform} Profile ↗</a>
+        </div>
+      `;
+      list.appendChild(card);
+    });
+  }
+
+  function switchTab(tabKey, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderLeads(tabKey);
+  }
+
+  function copyText(elemId) {
+    const text = document.getElementById(elemId).innerText;
+    navigator.clipboard.writeText(text);
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  // Load today by default
+  renderLeads('today');
+</script>
+
+</body>
+</html>
