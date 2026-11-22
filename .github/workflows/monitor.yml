@@ -2,13 +2,15 @@ name: 24/7 Autonomous Speechify Complaint Hunter
 
 on:
   schedule:
-    # Runs automatically every 4 hours, 24/7/365, even with your laptop off!
-    - cron: '0 */4 * * *'
-  workflow_dispatch: # Allows manual trigger from GitHub anytime
+    # Runs every single hour, 24/7/365, completely free with UNLIMITED minutes on public repos!
+    - cron: '0 * * * *'
+  workflow_dispatch: # Allows manual 1-click trigger from GitHub anytime
 
 jobs:
   hunt-leads:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to commit new leads back to repo
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -22,9 +24,10 @@ jobs:
         run: |
           python speechify_swarm_engine.py
 
-      - name: Commit & Push New Leads to Repository
+      - name: Update index.html with Latest Leads & Commit
         run: |
           git config --local user.email "agent@github-actions.bot"
           git config --local user.name "Autonomous Churn Agent"
-          git add speechify_leads.json
+          git add speechify_leads.json dashboard.html index.html
           git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-captured new Speechify churn leads [skip ci]" && git push)
+
