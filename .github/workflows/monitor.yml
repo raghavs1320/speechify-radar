@@ -1,0 +1,30 @@
+name: 24/7 Autonomous Speechify Complaint Hunter
+
+on:
+  schedule:
+    # Runs automatically every 4 hours, 24/7/365, even with your laptop off!
+    - cron: '0 */4 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub anytime
+
+jobs:
+  hunt-leads:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run 8-Agent Swarm Pipeline
+        run: |
+          python speechify_swarm_engine.py
+
+      - name: Commit & Push New Leads to Repository
+        run: |
+          git config --local user.email "agent@github-actions.bot"
+          git config --local user.name "Autonomous Churn Agent"
+          git add speechify_leads.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-captured new Speechify churn leads [skip ci]" && git push)
